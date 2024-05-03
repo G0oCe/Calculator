@@ -128,8 +128,16 @@ MainWindow::MainWindow(QWidget *parent)
     // For QLineEdit
     connect(lbl, &QLineEdit::textEdited, this, &MainWindow::playClickSound);
 
-    //connect(num0, &QPushButton::clicked, this, &MainWindow::numPressed);
-    //connect(num1, &QPushButton::clicked, this, &MainWindow::numPressed);
+    connect(CE, &QPushButton::clicked, this, &MainWindow::CEpressed);
+    connect(pmBtn, &QPushButton::clicked, this, &MainWindow::changeSign);
+    connect(percentBtn, &QPushButton::clicked, this, &MainWindow::calculatePercentage);
+    connect(dot, &QPushButton::clicked, this, &MainWindow::addDecimalPoint);
+    connect(plsBtn, &QPushButton::clicked, this, &MainWindow::setPendingOperation);
+    connect(mnsBtn, &QPushButton::clicked, this, &MainWindow::setPendingOperation);
+    connect(mult, &QPushButton::clicked, this, &MainWindow::setPendingOperation);
+    connect(dev, &QPushButton::clicked, this, &MainWindow::setPendingOperation);
+    connect(iqvl, &QPushButton::clicked, this, &MainWindow::equal);
+
 
 }
 
@@ -142,5 +150,90 @@ void MainWindow::numPressed() {
     QString buttonText = button->text();
     QString labelText = lbl->text();
 
-    lbl->setText(buttonText);
+    lbl->setText(labelText + buttonText);
 }
+
+void MainWindow::CEpressed() {
+     lbl->setText("");
+}
+
+void MainWindow::changeSign() {
+    QString labelText = lbl->text();
+    double num = labelText.toDouble();
+
+    num = -num; // Change the sign
+
+    lbl->setText(QString::number(num));
+}
+
+void MainWindow::calculatePercentage() {
+    QString labelText = lbl->text();
+    double num = labelText.toDouble();
+
+    num = num / 100; // Calculate the percentage
+
+    lbl->setText(QString::number(num));
+}
+
+void MainWindow::addDecimalPoint() {
+    QString labelText = lbl->text();
+
+    // Check if the label text already contains a decimal point
+    if (!labelText.contains(".")) {
+        labelText += "."; // Add the decimal point
+        lbl->setText(labelText);
+    }
+}
+
+double result = 0.0;
+QString pending_operation;
+
+void MainWindow::add() {
+    double num = lbl->text().toDouble();
+    result += num;
+    lbl->setText(QString::number(result));
+}
+
+void MainWindow::subtract() {
+    double num = lbl->text().toDouble();
+    result -= num;
+    lbl->setText(QString::number(result));
+}
+
+void MainWindow::multiply() {
+    double num = lbl->text().toDouble();
+    result *= num;
+    lbl->setText(QString::number(result));
+}
+
+void MainWindow::divide() {
+    double num = lbl->text().toDouble();
+    if (num != 0.0) {
+        result /= num;
+        lbl->setText(QString::number(result));
+    } else {
+        lbl->setText("Error");
+    }
+}
+
+void MainWindow::equal() {
+    if (pending_operation == "+") {
+        add();
+    } else if (pending_operation == "-") {
+        subtract();
+    } else if (pending_operation == "x") {
+        multiply();
+    } else if (pending_operation == "/") {
+        divide();
+    }
+    pending_operation = "";
+}
+
+void MainWindow::setPendingOperation() {
+    QPushButton *button = (QPushButton *)sender();
+    pending_operation = button->text();
+    result = lbl->text().toDouble();
+    lbl->setText("");
+}
+
+

@@ -18,7 +18,16 @@ public:
     void operationPressed();
     void equalsPressed();
     void playClickSound();
-
+    void CEpressed();
+    void changeSign();
+    void calculatePercentage();
+    void addDecimalPoint();
+    void add();
+    void subtract();
+    void multiply();
+    void divide();
+    void equal();
+    void setPendingOperation();
 signals:
 
 };
