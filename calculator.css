@@ -1,0 +1,74 @@
+/* calculator.css */
+
+QWidget {
+    background-color: white;
+    color: black;
+}
+
+/* Style for all buttons */
+QPushButton {
+    font-size: 20px;
+    border: none;
+}
+
+/* Style for number buttons and zero button */
+QPushButton#numButton, QPushButton#zeroButton {
+    background-color: white;
+    color: black;
+}
+
+QPushButton#numButton:hover, QPushButton#zeroButton:hover {
+    background-color: #f5f5f5; /* Slightly lighter gray when hovered */
+}
+
+QPushButton#numButton:pressed, QPushButton#zeroButton:pressed {
+    background-color: #ddd; /* Light gray when pressed */
+}
+
+QPushButton#numButton:hover:pressed, QPushButton#zeroButton:hover:pressed {
+    background-color: #bbb; /* Darker gray when hovered and pressed */
+}
+
+/* Style for operator buttons */
+QPushButton#opButton {
+    background-color: orange;
+    color: white;
+}
+
+QPushButton#opButton:hover {
+    background-color: #ffbb33; /* Slightly lighter orange when hovered */
+}
+
+QPushButton#opButton:pressed {
+    background-color: #e67e22; /* Darker orange when pressed */
+}
+
+QPushButton#opButton:hover:pressed {
+    background-color: #cc7000; /* Even darker orange when hovered and pressed */
+}
+
+/* Style for other buttons */
+QPushButton#otherButton {
+    background-color: lightgray;
+    color: black;
+}
+
+QPushButton#otherButton:hover {
+    background-color: #dce3e8; /* Slightly lighter gray when hovered */
+}
+
+QPushButton#otherButton:pressed {
+    background-color: #bdc3c7; /* Darker gray when pressed */
+}
+
+QPushButton#otherButton:hover:pressed {
+    background-color: #a6acaf; /* Even darker gray when hovered and pressed */
+}
+
+/* Style for the display label */
+QLineEdit {
+    background-color: #ddd;
+    padding: 15px;
+    text-align: right;
+    font-size: 30px;
+}

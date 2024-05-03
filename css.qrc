@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>calculator.css</file>
+        <file>click.wav</file>
+    </qresource>
+</RCC>
